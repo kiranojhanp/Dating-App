@@ -2,6 +2,7 @@
 #
 .DS_Store
 .env
+dating-app-key.keystore
 coverage/
 
 # Xcode
