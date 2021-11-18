@@ -14,17 +14,18 @@ jobs:
           - 10.x
           - 12.x
           - 14.x
-  steps:
-    - uses: actions/checkout@v2
-    - name: 'Use Node.js ${{ matrix.node-version }}'
-      uses: actions/setup-node@v1
-      with:
-        node-version: '${{ matrix.node-version }}'
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Install node modules
-      run: |
-        yarn install
-    - name: Run test
-      run: |
-        yarn test-ci
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: 'Use Node.js ${{ matrix.node-version }}'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '${{ matrix.node-version }}'
+      - name: Use yarn
+        uses: c-hive/gha-yarn-cache@v1
+      - name: Install node modules
+        run: |
+          yarn install
+      - name: Run test
+        run: |
+          yarn test-ci
