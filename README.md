@@ -6,8 +6,8 @@
 <a href="https://codecov.io/gh/kiranojhanp/Dating-App">
   <img src="https://codecov.io/gh/kiranojhanp/Dating-App/branch/main/graph/badge.svg?token=wgofu5CZI4"/>
 </a>
-<a href="https://github.com/kiranojhanp/Dating-App/workflows/CI.yml/badge.svg?branch=main">
-  <img src="https://github.com/kiranojhanp/Dating-App/workflows/CI.yml/badge.svg?branch=main" />
+<a href="https://github.com/kiranojhanp/Dating-App/workflows/Continuous-Integration/badge.svg?branch=main">
+  <img src="https://github.com/kiranojhanp/Dating-App/workflows/Continuous-Integration/badge.svg?branch=main" />
 </a>
 </div>
 
