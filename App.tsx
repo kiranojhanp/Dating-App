@@ -25,7 +25,7 @@ const Hello: React.FC<Props> = ({name, baseEnthusiasmLevel = 0}) => {
       </Text>
       <View>
         <Button
-          title="Enthusiasm badau"
+          title="Enthusiasm badau na"
           accessibilityLabel="increment"
           onPress={onIncrement}
           color="blue"
