@@ -64,9 +64,9 @@ jobs:
 
       - name: Build Android App Bundle
         run: |
-          cd android && ./gradlew clean && ./gradlew bundleRelease --no-daemon
+          cd android && ./gradlew bundleRelease --no-daemon
 
-      - name: Sign App Bundle
+      - name: Sign App Bundle (AAB)
         id: sign_app
         uses: r0adkll/sign-android-release@v1
         with:
