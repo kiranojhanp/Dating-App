@@ -58,7 +58,7 @@ jobs:
 
       - name: Sign App Bundle (AAB)
         id: sign_app
-        uses: r0adkll/sign-android-release@v1.0.1
+        uses: r0adkll/sign-android-release@v1
         with:
           releaseDirectory: android/app/build/outputs/bundle/release
           signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
@@ -70,15 +70,15 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Signed App Bundle
-          path: android/app/build/outputs/bundle/release
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}
 
       - name: Upload artifact to Firebase App Distribution
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.2.1
         with:
           appId: ${{secrets.FIREBASE_APP_ID}}
           token: ${{secrets.FIREBASE_TOKEN}}
           groups: ${{ secrets.FIREBASE_GROUPS }}
-          file: android/app/build/outputs/bundle/release
+          file: android/app/build/outputs/apk/release/app-release.apk
 
       # - name: Distribute app via Firebase App Distribution
       #   env:
