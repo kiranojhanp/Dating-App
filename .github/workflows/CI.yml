@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: '${{ matrix.node-version }}'
 
-      - name: Use yarn
+      - name: Use yarn package manager
         uses: c-hive/gha-yarn-cache@v1
 
       - name: Install node modules
