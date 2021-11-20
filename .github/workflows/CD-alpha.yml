@@ -52,15 +52,23 @@ jobs:
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
 
-      - name: Build Android App Bundle (aab)
+      - name: Build Project
         run: |
-          cd android && ./gradlew assembleRelease --no-daemon
+          cd android && ./gradlew assemble --no-daemon
+      
+      - name: Build Debug APK
+        run: |
+          cd android && ./gradlew assembleDebug --no-daemon
+          
+      - name: Build Release APK
+        run: |
+          cd android && ./gradlew assembleRelease  --no-daemon
 
       - name: Sign app bundle (aab)
         id: sign_app
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: app/build/outputs/apk/release
+          releaseDirectory: app/build/outputs/apk/release/app-release.apk
           signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
           alias: ${{ secrets.ANDROID_SIGNING_ALIAS }}
           keyStorePassword: ${{ secrets.ANDROID_SIGNING_STORE_PASSWORD }}
