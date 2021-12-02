@@ -2,7 +2,7 @@ name: Continuous-delivery-alpha
 'on':
   push:
     branches:
-      - alpha
+      runs-on: self-hosted
 
 jobs:
   build:
