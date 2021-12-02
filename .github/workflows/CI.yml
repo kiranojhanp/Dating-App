@@ -13,43 +13,22 @@ jobs:
         node-version: [14.x]
 
     steps:
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            whoami
           
-#       - name: Checkout
-#         uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-#       - name: 'Use Node.js ${{ matrix.node-version }}'
-#         uses: actions/setup-node@v1
-#         with:
-#           node-version: '${{ matrix.node-version }}'
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
-#       - name: Use yarn
-#         uses: c-hive/gha-yarn-cache@v1
+      - name: Run test and generate coverage report
+        run: |
+          yarn test --coverage
 
-#       - name: Install node modules
-#         run: |
-#           yarn install
-
-#       - name: Cache dependencies
-#         uses: actions/cache@v2
-#         with:
-#           path: |
-#             **/node_modules
-#           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-
-#       - name: Run test and generate coverage report
-#         run: |
-#           yarn test --coverage
-
-#       - name: Upload coverage to Codecov
-#         uses: codecov/codecov-action@v1
-#         with:
-#           token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
